@@ -38,4 +38,26 @@ Current prototype focus:
 The first day of development focused on building the initial hardware prototype of **KEMET**, our autonomous maze-solving robot for the Óbuda University Labyrinth Competition. The core chassis was assembled on a universal PCB platform, integrating the ESP32, Raspberry Pi Pico, RFID module, power regulation system, battery pack, and initial sensor layout. Early prototyping concentrated on validating subsystem integration, power distribution, and mechanical stability while preparing the platform for wall-following and navigation testing. Initial bring-up confirmed successful power delivery and basic hardware communication, establishing a solid foundation for future motor control, sensor calibration, and autonomous maze-solving development.
 
 <img width="920" height="1024" alt="Mazer Runner" src="https://github.com/user-attachments/assets/918c590f-e338-48ba-94ac-6212cc0694cc" />
+----------------------------------------------------------------------------------------------------------------------------
+## Day 2 — Wiring Diagram Documentation
+
+A full Prototype V1 wiring layout was created to document the current hardware architecture.
+
+The wiring layout shows the connection between the ESP32, Raspberry Pi Pico, TB6612FNG motor driver, sensors, RFID module, battery, and N20 motors. This diagram will be used as the first hardware reference before creating the EasyEDA connector-level schematic.
+
+Current status:
+- Full wiring layout drafted
+- ESP32 sensor connections documented
+- Pico-to-TB6612 motor-control connections documented
+- SPI communication plan between ESP32 and Pico defined
+- Power distribution and common ground routing documented
+
+Next steps:
+- Verify all power rails with a multimeter
+- Test Pico with TB6612 and motors first
+- Test ESP32 sensor readings separately
+- Test ESP32-to-Pico SPI communication
+- Convert this wiring into a cleaner EasyEDA schematic
+
+<img width="508" height="793" alt="Screenshot 2026-05-21 152951" src="https://github.com/user-attachments/assets/74823bd1-d913-48e2-90b7-58a6d6e63743" />
 
