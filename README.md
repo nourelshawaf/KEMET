@@ -68,14 +68,14 @@ Hardware Wiring Integration:
 
 The next development phase focused on integrating all major hardware subsystems of KEMET into a unified prototype architecture. The ESP32, Raspberry Pi Pico, TB6612FNG motor driver, RFID module, sensors, N20 motors, battery system, and power distribution lines were fully interconnected to establish the first complete system-level hardware configuration. During this stage, emphasis was placed on reliable signal routing, stable power distribution, common-ground integrity, and preparation for subsystem-level validation testing. The integration process also included documenting communication interfaces, organizing wiring structure, and improving physical assembly quality to support future debugging, enclosure integration, and autonomous operation testing.
 
-Soldering & Physical Assembly
+Soldering & Physical Assembly:
 - Soldered component headers, motor wires, power lines, and communication lines
 - Reinforced critical power connections for improved reliability
 - Secured loose jumper connections to reduce intermittent faults
 - Checked for short circuits and loose solder joints
 -Improved cable organization for easier debugging and future enclosure integration
 
-Power System Validation
+Power System Validation:
 - Verified voltage distribution paths
 - Confirmed proper battery-to-regulator connections
 - Checked continuity on major power rails
