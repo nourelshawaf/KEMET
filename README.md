@@ -37,7 +37,7 @@ Current prototype focus:
 
 The first day of development focused on building the initial hardware prototype of **KEMET**, our autonomous maze-solving robot for the Óbuda University Labyrinth Competition. The core chassis was assembled on a universal PCB platform, integrating the ESP32, Raspberry Pi Pico, RFID module, power regulation system, battery pack, and initial sensor layout. Early prototyping concentrated on validating subsystem integration, power distribution, and mechanical stability while preparing the platform for wall-following and navigation testing. Initial bring-up confirmed successful power delivery and basic hardware communication, establishing a solid foundation for future motor control, sensor calibration, and autonomous maze-solving development.
 
-<img width="920" height="1024" alt="Mazer Runner" src="https://github.com/user-attachments/assets/918c590f-e338-48ba-94ac-6212cc0694cc" />
+<img width="508" height="793" alt="Mazer Runner" src="https://github.com/user-attachments/assets/918c590f-e338-48ba-94ac-6212cc0694cc" />
 
 ----------------------------------------------------------------------------------------------------------------------------
 ## Day 2 — Wiring Diagram Documentation
@@ -61,4 +61,23 @@ Next steps:
 - Convert this wiring into a cleaner EasyEDA schematic
 
 <img width="508" height="793" alt="Screenshot 2026-05-21 152951" src="https://github.com/user-attachments/assets/74823bd1-d913-48e2-90b7-58a6d6e63743" />
+
+Hardware Wiring Integration: 
+
+The next development phase focused on integrating all major hardware subsystems of KEMET into a unified prototype architecture. The ESP32, Raspberry Pi Pico, TB6612FNG motor driver, RFID module, sensors, N20 motors, battery system, and power distribution lines were fully interconnected to establish the first complete system-level hardware configuration. During this stage, emphasis was placed on reliable signal routing, stable power distribution, common-ground integrity, and preparation for subsystem-level validation testing. The integration process also included documenting communication interfaces, organizing wiring structure, and improving physical assembly quality to support future debugging, enclosure integration, and autonomous operation testing.
+
+Soldering & Physical Assembly
+- Soldered component headers, motor wires, power lines, and communication lines
+- Reinforced critical power connections for improved reliability
+- Secured loose jumper connections to reduce intermittent faults
+- Checked for short circuits and loose solder joints
+-Improved cable organization for easier debugging and future enclosure integration
+
+Power System Validation
+- Verified voltage distribution paths
+- Confirmed proper battery-to-regulator connections
+- Checked continuity on major power rails
+- Ensured all modules share a stable common ground
+- Inspected motor power isolation from logic power where necessary
+  <img width="508" height="793" alt="Day 2 -2" src="https://github.com/user-attachments/assets/e6089bc6-0a43-4b80-aa8e-d5e845ec9a75" />
 
