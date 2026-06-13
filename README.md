@@ -1,85 +1,85 @@
 # KEMET
 
-Autonomous maze-solving robot designed for the Óbuda University Labyrinth Competition.
+Autonomous maze-solving robot for the Óbuda University Labyrinth Competition.
 
-The robot combines:
-- RFID-guided navigation
-- wall-following algorithms
-- distributed embedded control
-- Webots simulation
-- autonomous maze solving
+## Project Goal
 
-The system is currently developed as modular subsystems using ESP32 and Raspberry Pi Pico microcontrollers. The robot follows maze walls using IR and ToF sensing, detects navigation markers using RFID, and aims to optimize maze traversal speed through path memorization and second-run optimization.
+KEMET navigates a maze autonomously using RFID-based navigation, wall-following via IR and ToF sensors, encoder-based motor control, and second-run path optimisation.
 
-Current prototype focus:
-- qualification track completion
-- stable wall-following
-- open-loop motor control with sensor-based correction
-- subsystem integration and validation
+## Competition Context
 
-| Component | Selected Part | Purpose |
-|---|---|---|
-| Main Controller | ESP32 | Main decision-making, RFID reading, maze logic, wall-following strategy |
-| Motor Controller | Raspberry Pi Pico | Motor PWM control, encoder reading, PID speed control |
-| Motor Driver | TB6612FNG | Efficient dual DC motor driver for N20 motors |
-| Motors | 2× N20E 12V 1000 rpm Encoder Motors | Robot movement with encoder feedback |
-| Encoder Type | Magnetic Hall-effect Quadrature Encoder | Measures motor speed, direction, and distance |
-| RFID Reader | RC522 RFID Module | Reads START, STOP, LEFT, RIGHT, and DEAD-END markers |
-| Distance Sensors | ToF (VL53L1X) / IR Distance Sensors | Wall-following and obstacle distance measurement |
-| IMU | Gy- 521 || MPU6050 | angle correction and turn stabilization |
-| Battery | 2S Li-ion | Main power source for motors and electronics |
-| Voltage Regulation | Step-down converter 5V and step-up 12V | Provides stable voltage for ESP32, Pico, and sensors |
-| Chassis |Universal PCB design| Mechanical base of the robot |
-| Wheels | Small robot wheels, approx. 32 mm | Movement and speed control |
-| Caster Wheel | Ball caster  | Stability and balance |
---------------------------------------------------------------------------------------------------------------------------
-## Day 1 – Prototype Development Update
+Robot must fit inside `280 × 280 × 150 mm`, operate fully autonomously with no remote communication during the run, and respond to RFID navigation markers (`START`, `STOP`, `LEFT`, `RIGHT`, `DEAD END`). Maze corridor width is `28.5 ± 1 cm`. Qualification includes a straight-track and a curved-track task.
 
-The first day of development focused on building the initial hardware prototype of **KEMET**, our autonomous maze-solving robot for the Óbuda University Labyrinth Competition. The core chassis was assembled on a universal PCB platform, integrating the ESP32, Raspberry Pi Pico, RFID module, power regulation system, battery pack, and initial sensor layout. Early prototyping concentrated on validating subsystem integration, power distribution, and mechanical stability while preparing the platform for wall-following and navigation testing. Initial bring-up confirmed successful power delivery and basic hardware communication, establishing a solid foundation for future motor control, sensor calibration, and autonomous maze-solving development.
+## System Overview
 
-<img width="508" height="793" alt="Mazer Runner" src="https://github.com/user-attachments/assets/918c590f-e338-48ba-94ac-6212cc0694cc" />
+| Subsystem | Component |
+|-----------|-----------|
+| Navigation controller | ESP32 (ESP-WROOM-32) |
+| Motor controller | Raspberry Pi Pico |
+| Motor driver | TB6612FNG |
+| Motors | 2× DC gear motors, Ø 37 mm wheels |
+| Encoders | 2× HC-89 optical sensors (35 pulses/rev) |
+| RFID | RC522 (3.3 V only) |
+| Front distance | VL53L1X ToF |
+| Side/wall sensing | 4× Sharp GP2Y0A51SK0F IR |
+| IMU | MPU6050 (planned — angle correction) |
+| Power | 2S Li-ion → main switch → buck (5 V logic) + direct (motor rail) |
 
-----------------------------------------------------------------------------------------------------------------------------
-## Day 2 — Wiring Diagram Documentation
+## Development Status
 
-A full Prototype V1 wiring layout was created to document the current hardware architecture.
+| Phase | Status | Description |
+|-------|--------|-------------|
+| Phase 1 | **In progress** | Pico standalone: encoder-based straight + 90° turns |
+| Phase 2 | Planned | ESP32 ↔ Pico UART integration |
+| Phase 3 | Planned | Front ToF wall detection |
+| Phase 4 | Planned | RFID reading and command relay |
+| Phase 5 | Planned | Maze mapping and path optimisation |
 
-The wiring layout shows the connection between the ESP32, Raspberry Pi Pico, TB6612FNG motor driver, sensors, RFID module, battery, and N20 motors. This diagram will be used as the first hardware reference before creating the EasyEDA connector-level schematic.
+## Quick Start — Phase 1
 
-Current status:
-- Full wiring layout drafted
-- ESP32 sensor connections documented
-- Pico-to-TB6612 motor-control connections documented
-- SPI communication plan between ESP32 and Pico defined
-- Power distribution and common ground routing documented
+1. Flash `Code/Pico/motor_control/phase1_motor_calibration.ino` to the Pico (Arduino IDE, board: Raspberry Pi Pico).
+2. Open Serial Monitor at **115200 baud**.
+3. Robot runs: **Straight → Right → Right → Left → Left**, then repeats.
+4. Follow [`Docs/calibration.md`](Docs/calibration.md) for the full tuning procedure.
 
-Next steps:
-- Verify all power rails with a multimeter
-- Test Pico with TB6612 and motors first
-- Test ESP32 sensor readings separately
-- Test ESP32-to-Pico SPI communication
-- Convert this wiring into a cleaner EasyEDA schematic
+Key constants at the top of the sketch:
 
-<img width="508" height="793" alt="Screenshot 2026-05-21 152951" src="https://github.com/user-attachments/assets/74823bd1-d913-48e2-90b7-58a6d6e63743" />
+```cpp
+static const int BASE_PWM        = 160;  // Straight drive speed
+static const int TURN_PWM        = 130;  // Turn speed
+static const int STRAIGHT_PULSES =  70;  // ~23 cm straight distance
+static const int TURN_90_PULSES  =  28;  // Pulses for 90° pivot — main thing to tune
+```
 
+## Repository Structure
 
+- [`Code/`](Code/) — firmware for ESP32, Pico, and integration
+- [`Hardware/`](Hardware/) — wiring diagrams, schematics, BOM
+- [`Docs/`](Docs/) — full technical documentation
+- [`Tests/`](Tests/) — test logs and calibration results
+- [`Media/`](Media/) — photos, videos, diagrams
 
-Hardware Wiring Integration: 
+## Documentation Index
 
-The next development phase focused on integrating all major hardware subsystems of KEMET into a unified prototype architecture. The ESP32, Raspberry Pi Pico, TB6612FNG motor driver, RFID module, sensors, N20 motors, battery system, and power distribution lines were fully interconnected to establish the first complete system-level hardware configuration. During this stage, emphasis was placed on reliable signal routing, stable power distribution, common-ground integrity, and preparation for subsystem-level validation testing. The integration process also included documenting communication interfaces, organizing wiring structure, and improving physical assembly quality to support future debugging, enclosure integration, and autonomous operation testing.
+- [System Architecture](Docs/system_architecture.md)
+- [Competition Rules Summary](Docs/competition_rules_summary.md)
+- [Hardware Design](Docs/hardware_design.md)
+- [Electronics & Power System](Docs/electronics_power_system.md)
+- [Motor Control](Docs/motor_control.md)
+- [RFID Navigation](Docs/rfid_navigation.md)
+- [Wall Following](Docs/wall_following.md)
+- [Calibration](Docs/calibration.md)
+- [Testing Protocol](Docs/testing_protocol.md)
+- [Troubleshooting](Docs/troubleshooting.md)
 
-Soldering & Physical Assembly:
-- Soldered component headers, motor wires, power lines, and communication lines
-- Reinforced critical power connections for improved reliability
-- Secured loose jumper connections to reduce intermittent faults
-- Checked for short circuits and loose solder joints
--Improved cable organization for easier debugging and future enclosure integration
+## Prototype Photos
 
-Power System Validation:
-- Verified voltage distribution paths
-- Confirmed proper battery-to-regulator connections
-- Checked continuity on major power rails
-- Ensured all modules share a stable common ground
-- Inspected motor power isolation from logic power where necessary
-  <img width="508" height="793" alt="Day 2 -2" src="https://github.com/user-attachments/assets/e6089bc6-0a43-4b80-aa8e-d5e845ec9a75" />
+<img width="508" alt="Prototype V1 assembly" src="https://github.com/user-attachments/assets/918c590f-e338-48ba-94ac-6212cc0694cc" />
 
+<img width="508" alt="Wiring diagram V1" src="https://github.com/user-attachments/assets/74823bd1-d913-48e2-90b7-58a6d6e63743" />
+
+<img width="508" alt="Hardware integration" src="https://github.com/user-attachments/assets/e6089bc6-0a43-4b80-aa8e-d5e845ec9a75" />
+
+## Team
+
+KEMET Maze Robot Team — Óbuda University

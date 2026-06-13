@@ -1,0 +1,53 @@
+name: Test Result
+description: Log a test session result
+labels: ["test"]
+body:
+  - type: dropdown
+    id: test_type
+    attributes:
+      label: Test type
+      options:
+        - Straight line
+        - 90° turn (right)
+        - 90° turn (left)
+        - 4-turn heading return
+        - RFID reading
+        - Wall following
+        - Full maze run
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
+  - type: input
+    id: surface
+    attributes:
+      label: Floor surface
+      placeholder: "e.g. OSB, tile, smooth laminate"
+    validations:
+      required: true
+  - type: input
+    id: battery
+    attributes:
+      label: Battery voltage at test start
+      placeholder: "e.g. 7.8 V"
+  - type: textarea
+    id: results
+    attributes:
+      label: Results table
+      placeholder: |
+        | Trial | Target | Actual | Error | Notes |
+        |-------|--------|--------|-------|-------|
+        | 1     |        |        |       |       |
+    validations:
+      required: true
+  - type: textarea
+    id: conclusion
+    attributes:
+      label: Conclusion and next action
+    validations:
+      required: true

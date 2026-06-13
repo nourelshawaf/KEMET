@@ -1,0 +1,34 @@
+name: Hardware Issue
+description: Report a wiring error, component failure, or physical problem
+labels: ["hardware"]
+body:
+  - type: dropdown
+    id: subsystem
+    attributes:
+      label: Affected subsystem
+      options:
+        - Power / wiring
+        - Motors / TB6612
+        - Encoders (HC-89)
+        - RFID (RC522)
+        - ToF sensor (VL53L1X)
+        - IR sensors (Sharp)
+        - Chassis / mechanical
+    validations:
+      required: true
+  - type: textarea
+    id: symptom
+    attributes:
+      label: Observed symptom
+    validations:
+      required: true
+  - type: textarea
+    id: diagnosis
+    attributes:
+      label: What was checked / measured
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: Fix applied (if any)
