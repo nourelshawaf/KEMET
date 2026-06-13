@@ -30,7 +30,9 @@ The robot must be able to read the marker and execute the corresponding movement
 ## Maze Physical Dimensions
 
 - Corridor width: `28.5 ± 1 cm`
-- Wall height: not specified in summary — assume standard labyrinth walls.
+- Wall height: `15 cm`
+- Wall thickness: `15 mm`
+- Floor material: OSB
 
 ## Qualification Tasks
 

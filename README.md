@@ -71,14 +71,18 @@ static const int TURN_90_PULSES  =  28;  // Pulses for 90° pivot — main thing
 - [Calibration](Docs/calibration.md)
 - [Testing Protocol](Docs/testing_protocol.md)
 - [Troubleshooting](Docs/troubleshooting.md)
+- [Prototype V1](Docs/prototypes/prototype_v1.md)
+- [Prototype V2](Docs/prototypes/prototype_v2.md)
 
 ## Prototype Photos
 
-<img width="508" alt="Prototype V1 assembly" src="https://github.com/user-attachments/assets/918c590f-e338-48ba-94ac-6212cc0694cc" />
+![Prototype V1 wiring top](Media/photos/prototype_v1/prototype_v1_wiring_top.jpg)
+*Prototype V1 — top view after full wiring integration.*
 
-<img width="508" alt="Wiring diagram V1" src="https://github.com/user-attachments/assets/74823bd1-d913-48e2-90b7-58a6d6e63743" />
+![Prototype V2 top overview](Media/photos/prototype_v2/prototype_v2_top_overview.jpg)
+*Prototype V2 — current build with all subsystems integrated.*
 
-<img width="508" alt="Hardware integration" src="https://github.com/user-attachments/assets/e6089bc6-0a43-4b80-aa8e-d5e845ec9a75" />
+See [Prototype V1](Docs/prototypes/prototype_v1.md) and [Prototype V2](Docs/prototypes/prototype_v2.md) for full documentation.
 
 ## Team
 
